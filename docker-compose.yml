@@ -1,0 +1,14 @@
+services:
+  mcd-mcp-proxy:
+    build: .
+    container_name: mcd-mcp-proxy
+    ports:
+      - "8080:80"
+    environment:
+      # Default allows all origins, change to your specific domain if needed
+      - ALLOWED_ORIGIN=*
+      # Upstream to proxy to
+      - MCP_BACKEND_URL=https://mcp.mcd.cn
+      # Optional: set to inject Authorization to upstream (otherwise forwards client Authorization)
+      - UPSTREAM_AUTHORIZATION=
+    restart: unless-stopped
