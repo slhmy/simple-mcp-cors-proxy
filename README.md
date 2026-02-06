@@ -16,13 +16,13 @@ A simple nginx docker image with CORS settings to avoid encountering CORS issues
 The easiest way to run the proxy is using Docker Compose:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 To set a custom allowed origin, edit the `docker-compose.yml` file or override with:
 
 ```bash
-ALLOWED_ORIGIN=https://yourdomain.com docker-compose up -d
+ALLOWED_ORIGIN=https://yourdomain.com docker compose up -d
 ```
 
 ### Using Docker
@@ -85,7 +85,8 @@ The proxy automatically adds the following CORS headers:
 - `Access-Control-Allow-Methods`: GET, POST, PUT, DELETE, OPTIONS, PATCH
 - `Access-Control-Allow-Headers`: DNT, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control, Content-Type, Range, Authorization
 - `Access-Control-Expose-Headers`: Content-Length, Content-Range
-- `Access-Control-Allow-Credentials`: true
+
+**Note**: Credentials (`Access-Control-Allow-Credentials`) are not enabled to maintain compatibility with wildcard origins. If you need to send credentials (cookies, authorization headers), set `ALLOWED_ORIGIN` to a specific domain.
 
 ## License
 
